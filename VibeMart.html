@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Site</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #7682996c;
+            background-image: url(abc.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        header {
+            background: #35424a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .product {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+            transition: transform 0.5s;
+        }
+        .product img {
+            border-radius: 8px;
+            max-width: 100%;
+            height: auto;
+        }
+        .product h3 {
+            margin: 10px 0;
+        }
+        .product .price {
+            font-weight: bold;
+            color: #0a572a;
+        }
+        .product:hover {
+            transform: scale(1.05);
+        }
+        .add-to-cart, .buy-now ,.search-it {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .add-to-cart:hover, .buy-now:hover, .log-in:hover, .search-it:hover {
+            background-color: rgb(56, 56, 56);
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #35424a;
+            color: white;
+        }
+        h2 {
+            font-family: cursive;
+            font-size: 20px;
+            text-align: center;
+            color: rgb(1, 54, 56);
+        }
+        a {
+            color: white;
+            text-decoration: none;
+            font-family: sans-serif;
+            font-weight: bolder;
+        }
+        #cartStatus {
+            color: white;
+            margin: 10px 0;
+            display: none;
+        }
+        .log-in{
+            background-color: black;
+            border:none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position:absolute;
+            right:3%;
+            top:5%;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>VibeMart</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="page.html">Cart</a></li>
+                <li><a href="#">Orders</a></li>
+            </ul>
+            <form class="search-form" onsubmit="return false;">
+                <input type="text" placeholder="Explore Products..." aria-label="Search" id="searchInput">
+                <button class="search-it" type="button" onclick="submitSearch()">Search</button>
+            </form>
+            <button class="log-in"><a href="signup.html">Login</a></button>
+        </nav>
+        <div id="cartStatus"></div>
+    </header>
+    <h2>Dhamakedar Offers Live</h2>
+    <main id="products">
+        <div class="product" data-id="1">
+            <img src="addidas.avif" alt="Product 1">
+            <h3>ADIDAS RUN</h3>
+            <p class="price">Rs 1,999</p>
+            <button class="buy-now"><a href="shoes.html">View</a></button>
+            <button class="add-to-cart" onclick="addToCart('ADIDAS RUN', 1999)">Add To Cart</button>
+        </div>
+        <div class="product" data-id="2">
+            <img src="puma.jfif" alt="Product 2">
+            <h3>JACK PUMA</h3>
+            <p class="price">Rs 2,599</p>
+            <button class="buy-now"><a href="puma.html">View</a></button>
+            <button class="add-to-cart" onclick="addToCart('JACK PUMA', 2599)">Add To Cart</button>
+        </div>
+        <div class="product" data-id="3">
+            <img src="boat.avif" alt="Product 3">
+            <h3>BoAt GoD</h3>
+            <p class="price">Rs 1,099</p>
+            <button class="buy-now"><a href="earbuds.html">View</a></button>
+            <button class="add-to-cart" onclick="addToCart('BoAt GoD', 1099)">Add To Cart</button>
+        </div>
+        <div class="product" data-id="4">
+            <img src="batt.webp" alt="Product 3">
+            <h3>MRF Bat</h3>
+            <p class="price">Rs 2,089</p>
+            <button class="buy-now"><a href="bat.html">View</a></button>
+            <button class="add-to-cart" onclick="addToCart('MRF Bat', 2089)">Add To Cart</button>
+        </div>
+        <div class="product" data-id="5">
+            <img src="iphn.jfif" alt="Product 3">
+            <h3>Iphone 16 Pro Max</h3>
+            <p class="price">Rs 1,89,999</p>
+            <button class="buy-now"><a href="iphone.html">View</a></button>
+            <button class="add-to-cart" onclick="addToCart('Iphone 16 Pro Max', 189999)">Add To Cart</button>
+        </div>
+        <div class="product" data-id="6">
+            <img src="play.webp" alt="Product 3">
+            <h3>PS 5</h3>
+            <p class="price">Rs 45,000</p>
+            <button class="buy-now"><a href="ps5.html">View</a></button>
+            <button class="add-to-cart" onclick="addToCart('PS 5', 45000)">Add To Cart</button>
+        </div>
+        <div class="product" data-id="7">
+            <img src="boatwatch.jpg" alt="Product 3">
+            <h3>BoAt Extend</h3>
+            <p class="price">Rs 2,999</p>
+            <button class="buy-now"><a href="boat.html">View</a></button>
+            <button class="add-to-cart" onclick="addToCart('BoAt Extend', 2999)">Add To Cart</button>
+        </div>
+        <div class="product" data-id="8">
+            <img src="tuf.webp" alt="Product 3">
+            <h3>Asus TUFF</h3>
+            <p class="price">Rs 54,000</p>
+            <button class="buy-now"><a href="asus.html">View</a></button>
+            <button class="add-to-cart" onclick="addToCart('Asus TUFF', 54000)">Add To Cart</button>
+        </div>
+        <div class="product" data-id="9">
+            <img src="sam.webp" alt="Product 3">
+            <h3>Samsung S24 Ultra</h3>
+            <p class="price">Rs 1,31,999</p>
+            <button class="buy-now"><a href="sam.html">View</a></button>
+            <button class="add-to-cart" onclick="addToCart('Samsung S24 Ultra', 131999)">Add To Cart</button>
+        </div>
+        <div class="product" data-id="10">
+            <img src="drone.webp" alt="Product 3">
+            <h3>Drone Pro</h3>
+            <p class="price">Rs 25,000</p>
+            <button class="buy-now"><a href="drone.html">View</a></button>
+            <button class="add-to-cart" onclick="addToCart('Drone Pro', 25000)">Add To Cart</button>
+        </div>
+    </main>
+    
+    <footer>
+        <p>@VibeMart.com</p>
+    </footer>
+
+    <script>
+        const products = [
+    { id: 1, name: "ADIDAS RUN", price: 1999, image: "addidas.avif", link: "shoes.html" },
+    { id: 2, name: "JACK PUMA", price: 2599, image: "puma.jfif", link: "puma.html" },
+    { id: 3, name: "BoAt GoD", price: 1099, image: "boat.avif", link: "earbuds.html" },
+    { id: 4, name: "MRF Bat", price: 2089, image: "batt.webp", link: "bat.html" },
+    { id: 5, name: "iPhone 16 Pro Max", price: 189999, image: "iphn.jfif", link: "iphone.html" },
+    { id: 6, name: "PS 5", price: 45000, image: "play.webp", link: "ps5.html" },
+    { id: 7, name: "BoAt Extend", price: 2999, image: "boatwatch.jpg", link: "boat.html" },
+    { id: 8, name: "Asus TUFF", price: 54000, image: "tuf.webp", link: "asus.html" },
+    { id: 9, name: "Samsung S24 Ultra", price: 131999, image: "sam.webp", link: "sam.html" },
+    { id: 10, name: "Drone Pro", price: 25000, image: "drone.webp", link: "drone.html" },
+];
+
+function submitSearch() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    const filteredProducts = products.filter(product => 
+        product.name.toLowerCase().includes(query)
+    );
+
+    displayProducts(filteredProducts);
+}
+
+function displayProducts(productsToDisplay) {
+    const productsContainer = document.getElementById('products');
+    productsContainer.innerHTML = ''; 
+
+    if (productsToDisplay.length === 0) {
+        productsContainer.innerHTML = '<p>No products found.</p>';
+        return;
+    }
+
+    productsToDisplay.forEach(product => {
+        productsContainer.innerHTML += `
+            <div class="product" data-id="${product.id}">
+                <img src="${product.image}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p class="price">Rs ${product.price}</p>
+                <button class="buy-now"><a href="${product.link}">View</a></button>
+                <button class="buy-now" onclick="addToCart('${product.name}', ${product.price})">Add To Cart</button>
+            </div>
+        `;
+    });
+}
+
+displayProducts(products);
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function addToCart(name, price) {
+            const existingItemIndex = cart.findIndex(item => item.name === name);
+            if (existingItemIndex > -1) {
+                cart[existingItemIndex].quantity++;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${name} has been added to your cart.`);
+            showCartStatus();
+        }
+
+        function showCartStatus() {
+            const itemCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+            const cartStatus = document.getElementById('cartStatus');
+            cartStatus.textContent = `Items in Cart: ${itemCount}`;
+            cartStatus.style.display = itemCount > 0 ? 'block' : 'none';
+        }
+        showCartStatus();
+    </script>
+</body>
+</html>

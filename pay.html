@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - VibeMart</title>
+    <link rel="stylesheet" href="web.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .payment-container {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: auto;
+        }
+        h2, h3 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        #loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .order-summary {
+            margin: 20px 0;
+        }
+        .order-summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>VibeMart</h1>
+        <nav>
+            <ul>
+                <li><a href="BlackBazar.html">Home</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="#">Orders</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h2>Payment Information</h2>
+    
+    <div class="payment-container">
+        <h3>Order Summary</h3>
+        <div class="order-summary" id="orderSummary"></div>
+        <h3>Total: <span id="totalAmount">Rs 0</span></h3>
+
+        <form id="payment-form">
+            <h3>Payment Details</h3>
+            <label for="card-name">Name on Card:</label>
+            <input type="text" id="card-name" required>
+            <div id="cardNameError" class="error-message"></div>
+
+            <label for="card-number">Card Number:</label>
+            <input type="text" id="card-number" required pattern="\d{16}" placeholder="1234567890123456">
+            <div id="cardNumberError" class="error-message"></div>
+
+            <label for="expiry-date">Expiry Date:</label>
+            <input type="text" id="expiry-date" required placeholder="MM/YY" pattern="\d{2}/\d{2}">
+            <div id="expiryDateError" class="error-message"></div>
+
+            <label for="cvv">CVV:</label>
+            <input type="password" id="cvv" required pattern="\d{3}" placeholder="123">
+            <div id="cvvError" class="error-message"></div>
+
+            <button type="submit">Pay Now</button>
+        </form>
+        
+        <div id="loading">Processing...</div>
+    </div>
+
+    <footer>
+        <p>&copy; vibemart.com</p>
+    </footer>
+
+    <script>
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const totalAmount = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+        document.getElementById('totalAmount').textContent = `Rs ${totalAmount}`;
+
+        const orderSummary = document.getElementById('orderSummary');
+        cart.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'order-summary-item';
+            div.innerHTML = `${item.name} - ₹${item.price} x ${item.quantity}`;
+            orderSummary.appendChild(div);
+        });
+
+        document.getElementById('payment-form').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            const loadingIndicator = document.getElementById('loading');
+            loadingIndicator.style.display = 'block'; 
+
+            const cardName = document.getElementById('card-name').value;
+            const cardNumber = document.getElementById('card-number').value;
+            const expiryDate = document.getElementById('expiry-date').value;
+            const cvv = document.getElementById('cvv').value;
+
+            let isValid = true;
+            if (!cardName) {
+                document.getElementById('cardNameError').textContent = 'Please enter the name on the card.';
+                isValid = false;
+            } else {
+                document.getElementById('cardNameError').textContent = '';
+            }
+
+            if (!cardNumber.match(/^\d{16}$/)) {
+                document.getElementById('cardNumberError').textContent = 'Please enter a valid card number.';
+                isValid = false;
+            } else {
+                document.getElementById('cardNumberError').textContent = '';
+            }
+
+            if (!cvv.match(/^\d{3}$/)) {
+                document.getElementById('cvvError').textContent = 'Please enter a valid CVV.';
+                isValid = false;
+            } else {
+                document.getElementById('cvvError').textContent = '';
+            }
+
+            if (!isValid) {
+                loadingIndicator.style.display = 'none'; 
+                return;
+            }
+
+            
+            setTimeout(() => {
+                alert(`Payment successful for ${cardName}!\nTotal: Rs ${totalAmount}`);
+                loadingIndicator.style.display = 'none'; 
+                localStorage.removeItem('cart'); 
+                document.getElementById('payment-form').reset();
+                window.location.href = 'BlackBazar.html'; 
+            }, 2000); 
+        });
+    </script>
+</body>
+</html>

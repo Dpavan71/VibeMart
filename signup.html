@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up Form for VibeMart</title>
+    <style>
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+
+        header{
+            background-color: grey;
+            color:white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+
+        }
+
+        input{
+            width: 70%;
+            padding: 10px;
+            margin: 5px 0;
+            border:black;
+            border-radius: 7px;
+        }
+        body{
+            background-color:  #35424a  ;
+        }
+        
+        button {
+            padding: 10px 20px;
+            color: rgb(236, 236, 255);
+            background-color: blue;
+            border-radius: 6px;
+            border: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        button:hover{
+          background-color: rgb(0, 0, 0);
+        }
+        .container{
+            background-color:#030405;
+            padding: 20px;
+            border-radius: 20px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+    <div class="container">
+    <header>
+    <h1>Sign Up your account in  VibeMart</h1>
+    </header><br>
+    <form id="basicForm">
+        <input type="text" placeholder="Name" id="name" name="name"><br><br>
+        <span id="nameError" class="error"></span><br>
+
+        <input type="text" placeholder="email" id="email" name="email"><br><br>
+        <span id="emailError" class="error"></span><br>
+
+        <input type="text" placeholder="Age" id="age" name="age"><br><br>
+        <span id="ageError" class="error"></span><br>
+
+        <input type="text" placeholder="Password" id="password" name="password"><br><br>
+        <span id="passwordError" class="error"></span><br>
+
+
+        <button type="Sign up">Sign up</button>
+        </center>
+    </form>
+    </div>
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+            
+            let isValid = true;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const age = document.getElementById('age').value;
+            const password = document.getElementById('password').value;
+
+
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const ageError = document.getElementById('ageError');
+            const passwordError = document.getElementById('passwordError');
+
+
+            nameError.textContent = '';
+            emailError.textContent = '';
+            ageError.textContent = '';
+            passwordError.textContent = ''; 
+
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const agePattern = /^[1-9][0-9]?$/;
+
+            if (!name) {
+                nameError.textContent = 'Name is required.';
+                isValid = false;
+            }
+
+            if (!email || !emailPattern.test(email)) {
+                emailError.textContent = 'Please enter a valid email.';
+                isValid = false;
+            }
+
+            if (!age || !agePattern.test(age)) {
+                ageError.textContent = 'Please enter a valid age (1-99).';
+                isValid = false;
+            }
+
+            
+            if (!password) {
+                passwordError.textContent = 'please enter the password.';
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert('Form submitted successfully!');
+                window.location.href="login.html";
+            }
+        }
+
+        document.getElementById('basicForm').addEventListener('submit', validateForm);
+    </script>
+</body>
+</html>

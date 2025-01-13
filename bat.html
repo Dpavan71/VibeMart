@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bat.css">
+    <title>Buy Product</title>
+    <button class="info"><a href="VibeMart.html">Back</a></button>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #35424a;
+    margin: 0;
+    padding: 20px;
+}
+
+.product-page {
+    display: flex;
+    max-width: 800px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    padding: 20px;
+}
+
+.product-image-container {
+    flex: 1;
+}
+
+.product-image {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.product-details {
+    flex: 2;
+    padding-left: 20px;
+}
+
+.product-title {
+    font-size: 24px;
+    margin: 15px 0;
+}
+
+.product-description {
+    font-size: 16px;
+    color: #666;
+    margin: 10px 0;
+}
+
+.product-price {
+    font-size: 20px;
+    color: #333;
+    margin: 15px 0;
+}
+
+.quantity-input {
+    width: 50px;
+    margin: 10px 0;
+}
+
+.add-to-cart, .buy-now, .submit {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+}
+
+.add-to-cart:hover, .buy-now:hover, .submit:hover {
+    background-color: #218838;
+}
+
+.contact-info {
+    max-width: 800px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px auto 0;
+}
+
+.contact-info h2 {
+    margin: 0 0 15px;
+}
+
+.contact-info label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.contact-info input, 
+.contact-info textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.contact-info textarea {
+    resize: vertical;
+}
+
+.info{
+  position: absolute;
+  left: 3%;
+  top:5%;
+  height: 5%;
+  cursor: pointer;
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+a{
+    text-decoration: none;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bolder;
+}
+    </style>
+    <script>
+        function showAlert(event) {
+        event.preventDefault(); 
+        alert("Your information has been recorded successfully!");
+    }
+</script>
+</head>
+<body>
+    <div class="product-page">
+        <div class="product-image-container">
+            <img src="batt.webp" alt="Product Image" class="product-image">
+        </div>
+        <div class="product-details">
+            <h1 class="product-title">MRF BAT</h1>
+            <p class="product-description">MRF (SIZE-4) grand virat kohli signed Poplar Willow Cricket Bat  (1 kg) Law 5 of the Laws of Cricket state that the length of the bat may be no more than 38 in (965 mm), the width no more than 4.25 in (108 mm), the overall depth no more than 2.64 in (67 mm) and edge no more than 1.56 in (40 mm).
+            </p>
+            <p class="product-price">Rs 2,089</p>
+            
+        </div>
+    </div>
+
+    <div class="contact-info">
+        <h2>Contact Information</h2>
+        <form onsubmit="showAlert(event)">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="address">Shipping Address:</label>
+            <textarea id="address" name="address" required></textarea>
+
+            <button type="submit" class="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
