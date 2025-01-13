@@ -32,7 +32,7 @@ Note: First file should be open is VibeMart.html which is linked to all other pa
 
 Installation:
 
-Clone the Repository: Begin by cloning the repository to your local machine. Open your terminal and run the following command: https://github.com/Dpavan71/BlackBazaar.git
+Clone the Repository: Begin by cloning the repository to your local machine. Open your terminal and run the following command: https://github.com/Dpavan71/VibeMart.git
 
 No Additional Setup Required:
 
